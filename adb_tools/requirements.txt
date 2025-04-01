@@ -1,0 +1,2 @@
+pyinstaller==6.7.0
+tkinter==0.1.0

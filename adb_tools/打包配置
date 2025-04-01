@@ -1,0 +1,31 @@
+PyInstaller打包配置
+1. 生成spec文件
+执行命令生成模板：
+pyi-makespec --windowed --name ADBGUI --icon=app.ico main.py
+2. 编辑 ADBGUI.spec 文件
+修改以下部分：
+s(
+    ['main.py'],
+    pathex=[],
+    binaries=[],
+    datas=[
+        ('adb_resources/*', 'adb_resources')  # 添加这一行
+    ],
+    hiddenimports=[],
+    ...
+)
+步骤三：执行打包命令
+pyinstaller ADBGUI.spec --noconfirm
+打包完成后，生成文件位于 dist/ADBGUI 目录
+
+步骤四：测试可执行文件
+进入输出目录：
+cd dist/ADBGUI
+直接运行 ADBGUI.exe
+测试功能：
+连接Android设备
+执行截图/安装APK等操作
+确认日志输出正常
+
+
+python -m PyInstaller -F --windowed --name ADBGUI --add-data "adb_resources/*;adb_resources" main.py
